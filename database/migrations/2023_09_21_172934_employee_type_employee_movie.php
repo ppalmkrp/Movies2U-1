@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('employee_employee_type_movie', function (Blueprint $table) {
+            $table->id();
+            $table->foreignID('emp_emp_type')->references('id')->on('employee_type_employee');
+            $table->string('movie_id');
+            $table->timestamps();
+
+            // เพิ่ม foreign key สำหรับตารางระหว่าง
+            $table->foreign('movie_id')->references('movie_id')->on('movies');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        //
+    }
+};
