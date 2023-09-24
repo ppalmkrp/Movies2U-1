@@ -30,15 +30,16 @@
          videoPreview.style.display = 'none';
      }
  }
+
  </script>
 @extends('layouts.navbar')
 @section('content')
-    <h2>Edit movie</h2>
+    <header>Edit Movie</header>
     <div class="container-fluid">
         @foreach ($edit_movie as $m)
         <form method="post" action="/moviemanagement/update" enctype="multipart/form-data">
             @csrf
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-5">
                     <div class="input-group mb-3">
                         <input name="img" type="file" class="form-control" accept=".png" onchange="previewImage(this)">
@@ -83,7 +84,7 @@
                           </select><br>
                     </div>
                           <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Movie score:</span>
+                            <span class="input-group-text" id="basic-addon1">Movie score <i class="bi bi-star-fill star-icon"> </i>:</span>
                             <input type="number" name="score" value="{{ $m->movie_score }}" placeholder="" class="form-control" aria-describedby="basic-addon1" step="0.1" required>
                             <span class="input-group-text" id="basic-addon1">/10</span>
                         </div>
@@ -113,7 +114,7 @@
                         <span class="input-group-text">Movie info:</span>
                         <textarea name="info" class="form-control" aria-label="With textarea">{{ $m->movie_info }}</textarea>
                       </div><br>
-                      <a href="/moviemanagement/update"><button type="submit" class="btn btn-success">Save</button></a>
+                      <a href="/moviemanagement/update"><button type="submit" class="btn btn-success" onclick="return confirm('Are you sure you want to update this movie?')">Save</button></a>
                 </div>
             </div>
         </form>

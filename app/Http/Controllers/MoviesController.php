@@ -17,7 +17,13 @@ class MoviesController extends Controller
         $ctr = Critical_rate::all();
         return view('MovieManagement',compact('movie','emp','mtype','ctr'));
     }
-
+    public function showType($Id){
+        $mtype = Movie_type::where('type_id',$Id)->get();
+        $type = Movie_type::all();
+        $movie = Movie::all();
+        $ctr = Critical_rate::all();
+        return view('moviemanagementfilter',compact('movie','mtype','ctr','type'));
+    }
 
     public function showMovieDetails($movieId)
     {
@@ -168,12 +174,7 @@ class MoviesController extends Controller
             'movie_type_id' => $request->type,
             'movie_info' => $request->info
         ]);
-        
+
         return redirect('/moviemanagement');
     }
-
-
-
-
-
 }

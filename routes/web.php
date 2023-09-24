@@ -30,8 +30,7 @@ Route::middleware([
 
 
 Route::get('/moviedetail/{movieId}', [MoviesController::class,'showMovieDetails']);
-
-
+Route::get('/type/{Id}', [MoviesController::class,'showType']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/moviemanagement',[MoviesController::class,'manage']);
     Route::get('/moviemanagement/forminsertmovie',[MoviesController::class,'movieform']);

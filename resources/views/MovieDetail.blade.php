@@ -11,10 +11,9 @@
                     <a href="">{{ $r->ctr_name }}</a>
                     @endif
                 @endforeach
-                -{{ number_format($m->movie_time/60) }}h {{ number_format($m->movie_time%60) }}m</p>
+                -{{ floor($m->movie_time/60) }}h {{ floor($m->movie_time%60) }}m</p>
                 <h5>Movie Score</h5>
                 <h6><i class="bi bi-star-fill"> </i>{{ $m->movie_score }}/10</h6>
-
                 @endforeach
             </div>
             <div class="col-8">
@@ -38,7 +37,7 @@
                 <br>
                 @foreach ($mtype as $mt)
                     @if($m->movie_type_id == $mt->type_id)
-                        <p><a href="">{{ $mt->type_name }}</a></p>
+                        <p><a href="/type/{{ $mt->type_id }}">{{ $mt->type_name }}</a></p>
                     @endif
                 @endforeach
                 <h5>Movie info</h5>

@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <div class="navbar">
+    <div class="navbar z-2">
         <div class="container">
             <a href="/dashboard"><h1>Movie2U</h1></a>
             <form class="d-flex" role="search">
@@ -35,7 +35,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/user/profile">Setting</a></li>
                         <li><a class="dropdown-item" href="#">Watch list</a></li>
-                        <li><a class="dropdown-item" href="{{ route('logout') }}">Log out</a></li>
+                        <li><a class="dropdown-item" href="{{ route('logout') }}" @click.prevent="$root.submit();">Log out</a></li>
                     </ul>
                 </div>
             </form>

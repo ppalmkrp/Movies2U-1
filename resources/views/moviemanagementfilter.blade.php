@@ -19,24 +19,32 @@
               <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                 <ul class="navbar-nav">
                   <li class="nav-item dropdown">
+                    @foreach ($mtype as $mt)
                     <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      Filter
-                    </button>
+                        {{ $mt->type_name }}
+                      </button>
+                    @endforeach
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        @foreach($mtype as $mt)
-                        <li><a class="dropdown-item" href="/type/{{ $mt->type_id }}">{{ $mt->type_name }}</a></li>
+                        @foreach($type as $t)
+                        <li><a class="dropdown-item" href="/type/{{ $t->type_id }}">{{ $t->type_name }}</a></li>
                         @endforeach
                     </ul>
                   </li>
                 </ul>
               </div>
               <a class="navbar-text" href="/moviemanagement/forminsertmovie"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-upload"> </i>Import Movie</button></a>
+
             </div>
           </nav>
     </div>
 
     <div class="row mt-2">
+        @foreach ($mtype as $mt)
+        @php
+        $foundMovies = false;
+    @endphp
         @foreach ($movie as $m)
+        @if ($m->movie_type_id == $mt->type_id)
         <div class="col-3">
             <div class="card h-100 mt-3" style="width: 18 rem;">
                 <a href="/moviedetail/{{ $m->movie_id }}">
@@ -63,7 +71,21 @@
                 </div>
             </div>
         </div>
+        @php
+            $foundMovies = true;
+        @endphp
+        @endif
+
         @endforeach
+        @if (!$foundMovies)
+        <div class="col-12 mt-3">
+            <div class="alert alert-dark" role="alert">
+                Not found movies in this type.
+            </div>
+        </div>
+        @endif
+        @endforeach
+
     </div>
 </div>
 @endsection

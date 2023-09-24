@@ -34,10 +34,10 @@
 @extends('layouts.navbar')
 @section('content')
     <div class="container-fluid">
-        <h2>Upload movie</h2>
+        <header>Import Movie</header>
         <form method="post" action="/moviemanagement/insert" enctype="multipart/form-data">
             @csrf
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-5">
                     <div class="input-group mb-3">
                         <input name="img" type="file" class="form-control" accept=".png" required onchange="previewImage(this)">
@@ -82,7 +82,7 @@
                           </select><br>
                     </div>
                           <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Movie score:</span>
+                            <span class="input-group-text" id="basic-addon1">Movie score <i class="bi bi-star-fill star-icon"> </i>:</span>
                             <input type="number" name="score" placeholder="" class="form-control" aria-describedby="basic-addon1" step="0.1" required>
                             <span class="input-group-text" id="basic-addon1">/10</span>
                         </div>

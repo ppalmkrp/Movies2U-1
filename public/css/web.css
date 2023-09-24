@@ -31,7 +31,9 @@ h1::first-letter{ /* ตัวอักษรตัวแรก */
     position: sticky;
     top: 0;
     background-color: black;
+    
 }
+
 .card-img-top-item{
     height: 200px;
     object-fit: cover;
@@ -45,4 +47,10 @@ h1::first-letter{ /* ตัวอักษรตัวแรก */
 }
 .star-icon {
     color: #f4e004;
+}
+header {
+    background-color: #000000;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
 }
