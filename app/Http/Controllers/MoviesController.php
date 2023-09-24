@@ -34,9 +34,11 @@ class MoviesController extends Controller
     public function insertMovie(Request $request){
         $new_movie = new Movie;
         if ($request->score < 0 || $request->score > 10) {
-            return redirect()->back()->with('error', 'คะแนนต้องอยู่ระหว่าง 0 ถึง 10')->withInput();
+            return redirect()->back()->with('error', 'Please input score 0-10')->withInput();
         }
-
+        if($request->type == "" || $request->rate == ""){
+            return redirect()->back()->with('error', 'Please input type or rate.')->withInput();
+        }
         if ($request->hasFile('img')) {
             $imgFile = $request->file('img');
             $imgFileName = $request->id . '.png'; // กำหนดนามสกุลเป็น .png
@@ -93,6 +95,83 @@ class MoviesController extends Controller
             return redirect('/moviemanagement')->with('error', 'Movie not found.');
         }
     }
+
+    public function editForm($id){
+        $edit_movie = Movie::where('movie_id',$id)->get();
+        $movie = Movie::all();
+        $emp = Employee::all();
+        $mtype = Movie_type::all();
+        $ctr = Critical_rate::all();
+        return view('editMovieForm', compact('movie', 'emp', 'mtype', 'ctr','edit_movie'));
+
+    }
+    public function update(Request $request) {
+
+        $edit_movie = Movie::where('movie_id', $request->id);
+
+        if (!$edit_movie) {
+            return redirect()->back()->with('error', 'Movie not found.')->withInput();
+        }
+
+        if ($request->score < 0 || $request->score > 10) {
+            return redirect()->back()->with('error', 'Please input score 0-10')->withInput();
+        }
+
+        if ($request->type == "" || $request->rate == "") {
+            return redirect()->back()->with('error', 'Please input type or rate.')->withInput();
+        }
+
+        if ($request->hasFile('img')) {
+            $imgFile = $request->file('img');
+            $imgFileName = $request->id . '.png'; // กำหนดนามสกุลเป็น .png
+
+            // ตรวจสอบนามสกุลไฟล์
+            if ($imgFile->getClientOriginalExtension() !== 'png') {
+                return redirect()->back()->with('error', 'รูปภาพต้องเป็นไฟล์ .png เท่านั้น')->withInput();
+            }
+
+            // ลบรูปภาพเดิม (หากมี)
+            if (file_exists(public_path('Materials/Movies/' . $imgFileName))) {
+                unlink(public_path('Materials/Movies/' . $imgFileName));
+            }
+
+            // บันทึกรูปภาพใหม่
+            $imgFile->move(public_path('Materials/Movies'), $imgFileName);
+        }
+
+        // อัปโหลดวิดีโอใหม่ (หากมีการเลือกไฟล์)
+        if ($request->hasFile('video')) {
+            $videoFile = $request->file('video');
+            $videoFileName = $request->id . '.mp4'; // กำหนดนามสกุลเป็น .mp4
+
+            // ตรวจสอบนามสกุลไฟล์
+            if ($videoFile->getClientOriginalExtension() !== 'mp4') {
+                return redirect()->back()->with('error', 'วิดีโอต้องเป็นไฟล์ .mp4 เท่านั้น')->withInput();
+            }
+
+            // ลบวิดีโอเดิม (หากมี)
+            if (file_exists(public_path('Materials/Movies/' . $videoFileName))) {
+                unlink(public_path('Materials/Movies/' . $videoFileName));
+            }
+
+            // บันทึกวิดีโอใหม่
+            $videoFile->move(public_path('Materials/Movies'), $videoFileName);
+        }
+
+        // อัปเดตข้อมูลภาพยนต์
+        Movie::where('movie_id', $request->id)->update([
+            'movie_name' => $request->name,
+            'movie_time' => $request->time,
+            'movie_year_on_air' => $request->year,
+            'critical_rate' => $request->rate,
+            'movie_score' => $request->score,
+            'movie_type_id' => $request->type,
+            'movie_info' => $request->info
+        ]);
+        
+        return redirect('/moviemanagement');
+    }
+
 
 
 

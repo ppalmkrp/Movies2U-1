@@ -28,10 +28,15 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/moviedetail',[MoviesController::class,'index']);
-Route::get('/moviemanagement',[MoviesController::class,'manage']);
-Route::get('/moviemanagement/forminsertmovie',[MoviesController::class,'movieform']);
-Route::get('/moviedetail/{movieId}', [MoviesController::class,'showMovieDetails']);
-Route::post('/moviemanagement/insert',[MoviesController::class,'insertMovie']);
-Route::get('/moviemanagement/delete/{id}', [MoviesController::class,'deleteMovie']);
 
+Route::get('/moviedetail/{movieId}', [MoviesController::class,'showMovieDetails']);
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/moviemanagement',[MoviesController::class,'manage']);
+    Route::get('/moviemanagement/forminsertmovie',[MoviesController::class,'movieform']);
+    Route::post('/moviemanagement/insert',[MoviesController::class,'insertMovie']);
+    Route::get('/moviemanagement/delete/{id}', [MoviesController::class,'deleteMovie']);
+    Route::get('/moviemanagement/editForm/{id}', [MoviesController::class,'editForm']);
+    Route::post('/moviemanagement/update', [MoviesController::class,'update']);
+});

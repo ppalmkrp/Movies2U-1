@@ -14,11 +14,13 @@
                 -{{ number_format($m->movie_time/60) }}h {{ number_format($m->movie_time%60) }}m</p>
                 <h5>Movie Score</h5>
                 <h6><i class="bi bi-star-fill"> </i>{{ $m->movie_score }}/10</h6>
+
                 @endforeach
             </div>
             <div class="col-8">
                 @foreach ($movie as $m )
-                <video width="600" height="350" controls>
+
+                <video style="max-width: 700px" controls>
                     <source src="{{ asset('Materials/Movies/' . $m->movie_id . '.mp4') }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -28,7 +30,7 @@
         <div class="row">
             <div class="col-4">
                 @foreach($movie as $m)
-                <img src="{{ asset('Materials/Movies/' . $m->movie_id . '.png') }}" alt="Movie poster" width="250px" height="350px"/>
+                <img src="{{ asset('Materials/Movies/' . $m->movie_id . '.png') }}" alt="Movie poster" style="max-width: 250px"/>
                 @endforeach
             </div>
             <div class="col-8">

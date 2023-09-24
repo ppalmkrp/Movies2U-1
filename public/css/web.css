@@ -43,3 +43,6 @@ h1::first-letter{ /* ตัวอักษรตัวแรก */
     display: inline-block; /* ให้วิดีโอแสดงในบรรทัดเดียวกับโพสเตอร์ */
     vertical-align: top; /* จัดตำแหน่งให้วิดีโอไปด้านบนของโพสเตอร์ */
 }
+.star-icon {
+    color: #f4e004;
+}
