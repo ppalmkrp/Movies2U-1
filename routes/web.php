@@ -26,16 +26,19 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::middleware(['auth', 'admin:2'])->group(function () {
+        Route::get('/moviemanagement',[MoviesController::class,'manage'])->name('manage');
+        Route::get('/moviemanagement/type/{Id}', [MoviesController::class,'showType'])->name('showType');
+        Route::get('/moviemanagement/forminsertmovie',[MoviesController::class,'movieform'])->name('movieform');
+        Route::post('/moviemanagement/insert',[MoviesController::class,'insertMovie'])->name('insertMovie');
+        Route::get('/moviemanagement/delete/{id}', [MoviesController::class,'deleteMovie'])->name('deleteMovie');
+        Route::get('/moviemanagement/editForm/{id}', [MoviesController::class,'editForm'])->name('editForm');
+        Route::post('/moviemanagement/update', [MoviesController::class,'update'])->name('update');
+    });
 });
-
 
 Route::get('/moviedetail/{movieId}', [MoviesController::class,'showMovieDetails']);
-Route::get('/type/{Id}', [MoviesController::class,'showType']);
-Route::middleware(['auth'])->group(function () {
-    Route::get('/moviemanagement',[MoviesController::class,'manage']);
-    Route::get('/moviemanagement/forminsertmovie',[MoviesController::class,'movieform']);
-    Route::post('/moviemanagement/insert',[MoviesController::class,'insertMovie']);
-    Route::get('/moviemanagement/delete/{id}', [MoviesController::class,'deleteMovie']);
-    Route::get('/moviemanagement/editForm/{id}', [MoviesController::class,'editForm']);
-    Route::post('/moviemanagement/update', [MoviesController::class,'update']);
-});
+Route::get('/home',[MoviesController::class,'home']);
+Route::get('/type/{Id}', [MoviesController::class,'showList']);
+Route::get('/category', [MoviesController::class,'category']);
+

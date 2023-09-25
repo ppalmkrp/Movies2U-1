@@ -37,7 +37,7 @@
                 <br>
                 @foreach ($mtype as $mt)
                     @if($m->movie_type_id == $mt->type_id)
-                        <p><a href="/type/{{ $mt->type_id }}">{{ $mt->type_name }}</a></p>
+                        <p><a href="/moviemanagement/type/{{ $mt->type_id }}">{{ $mt->type_name }}</a></p>
                     @endif
                 @endforeach
                 <h5>Movie info</h5>

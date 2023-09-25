@@ -26,7 +26,7 @@
                     @endforeach
                     <ul class="dropdown-menu dropdown-menu-dark">
                         @foreach($type as $t)
-                        <li><a class="dropdown-item" href="/type/{{ $t->type_id }}">{{ $t->type_name }}</a></li>
+                        <li><a class="dropdown-item" href="/moviemanagement/type/{{ $t->type_id }}">{{ $t->type_name }}</a></li>
                         @endforeach
                     </ul>
                   </li>
@@ -42,7 +42,7 @@
         @foreach ($mtype as $mt)
         @php
         $foundMovies = false;
-    @endphp
+        @endphp
         @foreach ($movie as $m)
         @if ($m->movie_type_id == $mt->type_id)
         <div class="col-3">

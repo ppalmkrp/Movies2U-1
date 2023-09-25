@@ -24,7 +24,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark">
                         @foreach($mtype as $mt)
-                        <li><a class="dropdown-item" href="/type/{{ $mt->type_id }}">{{ $mt->type_name }}</a></li>
+                        <li><a class="dropdown-item" href="/moviemanagement/type/{{ $mt->type_id }}">{{ $mt->type_name }}</a></li>
                         @endforeach
                     </ul>
                   </li>

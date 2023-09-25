@@ -10,6 +10,30 @@ use App\Models\Movie_type;
 use App\Models\Critical_rate;
 class MoviesController extends Controller
 {
+    public function home(){
+        $action = Movie_type::where('type_id',"MT01")->get();
+        $comedy = Movie_type::where('type_id',"MT03")->get();
+        $movie = Movie::all();
+        $emp = Employee::all();
+        $mtype = Movie_type::all();
+        $ctr = Critical_rate::all();
+        return view('movie2u.Home',compact('movie','mtype','emp','mtype','ctr','action','comedy'));
+    }
+    public function category(){
+        $mtype = Movie_type::all();
+        $type = Movie_type::all();
+        $movie = Movie::all();
+        $ctr = Critical_rate::all();
+        return view('movie2u.Category',compact('movie','mtype','ctr','type'));
+    }
+
+    public function showList($Id){
+        $mtype = Movie_type::where('type_id',$Id)->get();
+        $type = Movie_type::all();
+        $movie = Movie::all();
+        $ctr = Critical_rate::all();
+        return view('movie2u.TypeList',compact('movie','mtype','ctr','type'));
+    }
     public function manage(){
         $movie = Movie::all();
         $emp = Employee::all();
@@ -109,7 +133,6 @@ class MoviesController extends Controller
         $mtype = Movie_type::all();
         $ctr = Critical_rate::all();
         return view('editMovieForm', compact('movie', 'emp', 'mtype', 'ctr','edit_movie'));
-
     }
     public function update(Request $request) {
 

@@ -22,22 +22,37 @@
 <body>
     <div class="navbar z-2">
         <div class="container">
-            <a href="/dashboard"><h1>Movie2U</h1></a>
+            <a href="/home"><h1>Movies2U</h1></a>
             <form class="d-flex" role="search">
                 <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
-                <div class="btn-group">
-                    <button class="btn btn-outline-danger" type="button">
-                        <i class="bi bi-person-circle" style="font-size: 1.2rem;"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/user/profile">Setting</a></li>
-                        <li><a class="dropdown-item" href="#">Watch list</a></li>
-                        <li><a class="dropdown-item" href="{{ route('logout') }}" @click.prevent="$root.submit();">Log out</a></li>
-                    </ul>
-                </div>
+            </form>
+
+                @guest <!-- ตรวจสอบว่าไม่มีใครล็อกอิน -->
+                    <a href="/login" class="btn btn-outline-danger me-2">Login</a>
+                    <a href="/register" class="btn btn-danger">Register</a>
+                @else <!-- ถ้ามีใครล็อกอินแล้ว -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle" style="font-size: 1.2rem;"> </i>{{ Auth::user()->roles }}:{{ Auth::user()->name }}<span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/user/profile">Setting</a></li>
+                            @if( Auth::user()->roles  == 2)
+                            <li><a class="dropdown-item" href="/moviemanagement">Management</a></li>
+                            @endif
+                            <li><a class="dropdown-item" href="">Watch list</a></li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    Log out
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                @endguest
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
             </form>
         </div>
     </div>

@@ -1,0 +1,76 @@
+*{ 
+    margin: 0;
+    padding: 0;
+}
+body{ /* กำหนดพื้นหลัง ตัวหนังสือ */
+    background-color: white;
+    color: black;
+}
+h1{ /* กำหนดขนาด ฟอนต์และสีของ element h1*/
+    font-size: 350%;
+    font-family: 'Monoton', cursive;;
+    color: red;
+    font-weight: bold;
+}
+a{
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+h1::first-letter{ /* ตัวอักษรตัวแรก */
+    color: white;
+}
+.card-img {
+    object-fit: cover; /* จัดการเพื่อให้ภาพไม่เสียสัดส่วน */
+    border-radius: 10px;
+}
+.h2_top10{
+    border-left: 5px solid red;
+    padding-left: 8px;
+}
+.category{
+    border-left: 5px solid red;
+    padding-left: 8px;
+}
+.title_category_Movies{
+    font-size: 2.5em;
+    font-weight: bolder;
+}
+.navbar {
+    z-index: 1;
+    position: sticky;
+    top: 0;
+    background-color: black;
+}
+.card-img{
+    height: 500px;
+}
+.card-img-top-item{
+    height: 200px;
+    object-fit: cover;
+}
+.footer{
+    text-align: center;
+}
+.footer_social {
+    text-align: center; 
+}
+ul{
+    list-style: none; 
+}
+.icon{
+    display: inline-block;
+    margin-right: 30px;
+    opacity: 0.4;
+}
+.icon:hover{
+    opacity: 1;
+    transition: 0.3s;
+}
+a{
+    text-decoration: none;
+}
+.carousel-item img {
+    width: 100%; /* กำหนดความกว้างของรูปภาพใน Carousel */
+    height: 500px; /* กำหนดความสูงของ Carousel */
+}

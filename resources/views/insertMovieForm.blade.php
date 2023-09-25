@@ -113,7 +113,7 @@
                         <span class="input-group-text">Movie info:</span>
                         <textarea name="info" class="form-control" aria-label="With textarea"></textarea>
                       </div><br>
-                      <a href="/moviemanagement/insert"><button type="submit" class="btn btn-success">Save</button></a>
+                      <a href="/moviemanagement/insert"><button type="submit" class="btn btn-success">Import</button></a>
                 </div>
             </div>
         </form>
