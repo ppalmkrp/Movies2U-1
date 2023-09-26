@@ -33,7 +33,8 @@
                 @else <!-- ถ้ามีใครล็อกอินแล้ว -->
                     <div class="btn-group">
                         <button type="button" class="btn btn-outline-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle" style="font-size: 1.2rem;"> </i>{{ Auth::user()->roles }}:{{ Auth::user()->name }}<span class="visually-hidden">Toggle Dropdown</span>
+                            <i class="bi bi-person-circle" style="font-size: 1.2rem;"> </i>@if( Auth::user()->roles == '2')Admin @else User
+                           @endif:{{ Auth::user()->name }}<span class="visually-hidden">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/user/profile">Setting</a></li>

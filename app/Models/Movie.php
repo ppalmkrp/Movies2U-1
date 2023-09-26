@@ -12,12 +12,14 @@ class Movie extends Model
     use SoftDeletes;
     public function criticalRate()
     {
-        return $this->belongsTo(Critical_rate::class, 'ctr_id');
+        return $this->belongsTo(Critical_rate::class);
     }
     public function Movie_type()
     {
-        return $this->belongsTo(Movie_type::class, 'type_id');
+        return $this->belongsTo(Movie_type::class);
     }
-
+    function Movie_details(){
+        return $this->belongsToMany(Movie_detail::class);
+        }
 
 }

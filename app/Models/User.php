@@ -61,6 +61,6 @@ class User extends Authenticatable
     ];
     public function userType()
 {
-    return $this->belongsTo(UserType::class);
+    return $this->belongsTo(User_type::class);
 }
 }

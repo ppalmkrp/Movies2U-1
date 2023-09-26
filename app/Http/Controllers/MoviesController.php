@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Employee_type;
 use App\Models\EmployeeType;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\Movie_type;
 use App\Models\Critical_rate;
+use App\Models\Movie_detail;
+
 class MoviesController extends Controller
 {
     public function home(){
@@ -55,10 +58,12 @@ class MoviesController extends Controller
         if (!$movie) {
             return abort(404);
         }
+        $detail = Movie_detail::all();
         $emp = Employee::all();
+        $empt = Employee_type::all();
         $mtype = Movie_type::all();
         $ctr = Critical_rate::all();
-        return view('MovieDetail', compact('movie', 'emp', 'mtype', 'ctr'));
+        return view('MovieDetail', compact('movie', 'emp', 'mtype', 'ctr','empt','detail'));
     }
 
     public function insertMovie(Request $request){
@@ -98,17 +103,18 @@ class MoviesController extends Controller
         return redirect('/moviemanagement');
     }
     public function movieform(){
-        $movie = Movie::all();
+        $detail = Movie_detail::all();
         $emp = Employee::all();
+        $empt = Employee_type::all();
+        $movie = Movie::all();
         $mtype = Movie_type::all();
         $ctr = Critical_rate::all();
-        return view('insertMovieForm',compact('movie','emp','mtype','ctr'));
+        return view('insertMovieForm',compact('movie','emp','mtype','ctr','empt','detail'));
     }
 
     public function deleteMovie($id) {
         $movie = Movie::where('movie_id',$id);
         $material = Movie::where('movie_id',$id)->first();
-
         if ($movie) {
             $imagePath = public_path('Materials/Movies/' . $material->movie_id . '.png');
             $videoPath = public_path('Materials/Movies/' . $material->movie_id . '.mp4');
@@ -129,10 +135,12 @@ class MoviesController extends Controller
     public function editForm($id){
         $edit_movie = Movie::where('movie_id',$id)->get();
         $movie = Movie::all();
+        $detail = Movie_detail::all();
         $emp = Employee::all();
+        $empt = Employee_type::all();
         $mtype = Movie_type::all();
         $ctr = Critical_rate::all();
-        return view('editMovieForm', compact('movie', 'emp', 'mtype', 'ctr','edit_movie'));
+        return view('editMovieForm', compact('movie', 'emp', 'mtype', 'ctr','edit_movie','empt','detail'));
     }
     public function update(Request $request) {
 

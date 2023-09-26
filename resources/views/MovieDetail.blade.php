@@ -13,7 +13,7 @@
                 @endforeach
                 -{{ floor($m->movie_time/60) }}h {{ floor($m->movie_time%60) }}m</p>
                 <h5>Movie Score</h5>
-                <h6><i class="bi bi-star-fill"> </i>{{ $m->movie_score }}/10</h6>
+                <h6><i class="bi bi-star-fill star-icon"> </i>{{ $m->movie_score }}/10</h6>
                 @endforeach
             </div>
             <div class="col-8">
@@ -37,19 +37,52 @@
                 <br>
                 @foreach ($mtype as $mt)
                     @if($m->movie_type_id == $mt->type_id)
-                        <p><a href="/moviemanagement/type/{{ $mt->type_id }}">{{ $mt->type_name }}</a></p>
+                        <p><a href="/type/{{ $mt->type_id }}">{{ $mt->type_name }}</a></p>
                     @endif
                 @endforeach
                 <h5>Movie info</h5>
                 <p>{{ $m->movie_info }}</p>
-                <p>Director:
-                    {{-- Director --}}
+                <p>
+                    Director:
+                    @foreach ($detail as $d)
+                    @foreach ($emp as $e)
+                        @foreach ($empt as $et)
+                            @if($d->movie_id == $m->movie_id && $d->emp_id == $e->emp_id && $d->emp_type_id == $et->emp_type_id)
+                                @if($et->emp_type_name == 'Director')
+                                    {{ $e->emp_name }}
+                                @endif
+                            @endif
+                        @endforeach
+                     @endforeach
+                     @endforeach
                 </p>
-                <p>Writer:
-                    {{-- Writer --}}
+                <p>
+                    Writer:
+                    @foreach ($detail as $d)
+                    @foreach ($emp as $e)
+                        @foreach ($empt as $et)
+                            @if($d->movie_id == $m->movie_id && $d->emp_id == $e->emp_id && $d->emp_type_id == $et->emp_type_id)
+                                @if($et->emp_type_name == 'Writer')
+                                    {{ $e->emp_name }}
+                                @endif
+                            @endif
+                        @endforeach
+                     @endforeach
+                     @endforeach
                 </p>
-                <p>Actor:
-                    {{-- Actor --}}
+                <p>
+                    Actor:
+                    @foreach ($detail as $d)
+                    @foreach ($emp as $e)
+                        @foreach ($empt as $et)
+                            @if($d->movie_id == $m->movie_id && $d->emp_id == $e->emp_id && $d->emp_type_id == $et->emp_type_id)
+                                @if($et->emp_type_name == 'Actor')
+                                    {{ $e->emp_name }}
+                                @endif
+                            @endif
+                        @endforeach
+                     @endforeach
+                     @endforeach
                 </p>
                 @endforeach
             </div>

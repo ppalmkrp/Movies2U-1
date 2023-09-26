@@ -34,12 +34,12 @@
 @extends('layouts.navbar')
 @section('content')
     <div class="container-fluid">
-        <header>Import Movie</header>
         <form method="post" action="/moviemanagement/insert" enctype="multipart/form-data">
             @csrf
             <div class="row mt-3">
                 <div class="col-5">
-                    <div class="input-group mb-3">
+                    <header>Movie Materials</header>
+                    <div class="input-group mb-3 mt-3">
                         <input name="img" type="file" class="form-control" accept=".png" required onchange="previewImage(this)">
                         <label class="input-group-text" for="inputGroupFile02">Upload Image (PNG only)</label>
                     </div>
@@ -51,7 +51,8 @@
                     <video id="video-preview" controls style="display: none; max-width: 450px;"></video>
                 </div>
                 <div class="col-7">
-                    <div class="input-group mb-3">
+                    <header>Movie Detail</header>
+                    <div class="input-group mb-3 mt-3">
                         <span class="input-group-text" id="basic-addon1">MovieID:</span>
                         <input type="text" name="id" placeholder="MXXX (XXX is Numbers)" class="form-control" aria-describedby="basic-addon1" required>
                       </div>
@@ -113,6 +114,7 @@
                         <span class="input-group-text">Movie info:</span>
                         <textarea name="info" class="form-control" aria-label="With textarea"></textarea>
                       </div><br>
+                      
                       <a href="/moviemanagement/insert"><button type="submit" class="btn btn-success">Import</button></a>
                 </div>
             </div>
