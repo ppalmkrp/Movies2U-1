@@ -43,7 +43,7 @@
                             </div>
                             <div class="mt-3">
                                     <a href="{{ url('/moviedetail/'.$m->movie_id) }}" class="btn btn-warning" style="width: 100%;">Detail</a>
-                                    <a href="" class="btn btn-dark mt-2" style="width: 100%;"><i class="bi bi-plus-lg"></i> Watchlist</a>
+                                    <a href="/addwatchlist/{{ $m->movie_id}}" class="btn btn-dark mt-2" style="width: 100%;"><i class="bi bi-plus-lg"></i> Watchlist</a>
                             </div>
                         </div>
                     </div>

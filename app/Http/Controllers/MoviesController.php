@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Employee_type;
 use App\Models\EmployeeType;
+use App\Models\watchlist;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\Movie_type;
@@ -208,4 +210,51 @@ class MoviesController extends Controller
 
         return redirect('/moviemanagement');
     }
+    public function addwatchlist($movieId)
+    {
+        $user_id = Auth::id();
+
+        // ตรวจสอบว่ามีการล็อกอินหรือไม่
+        if (Auth::check()) {
+            // ดึงข้อมูลผู้ใช้ที่ล็อกอินอยู่
+            $user = Auth::user();
+
+            // ตรวจสอบว่าผู้ใช้ล็อกอินหรือไม่
+            if ($user) {
+                // สร้าง Watchlist object และกำหนดค่า 'user_id' และ 'movie_id'
+                $add_watchlist = new Watchlist();
+                $add_watchlist->user_id = $user->id;
+                $add_watchlist->movie_id = $movieId;
+
+                // บันทึกลงใน watchlist
+                $add_watchlist->save();
+
+        }
+        return redirect()->back();
+    }
+}
+
+public function show_allwatchlist(){
+    $user_id = Auth::id();
+
+    // ดึง movie_id ที่เกี่ยวข้องกับ user_id นี้จาก watchlist
+    $watchlistMovies = watchlist::where('user_id', $user_id)->pluck('movie_id');
+
+    // ดึงข้อมูลหนังที่มี movie_id ใน watchlist
+    $moviesInWatchlist = Movie::whereIn('movie_id', $watchlistMovies)->get();
+
+    return view('movie2u.Watchlist', compact('user_id', 'moviesInWatchlist'));
+}
+
+public function deletewatchlist($id) {
+    $watchlistItem = watchlist::where('movie_id', $id)->first();
+
+    if ($watchlistItem) {
+            $watchlistItem->delete();
+
+        return redirect('/MyWatchlist')->with('success', 'Movie deleted successfully.');
+    } else {
+        return redirect('/MyWatchlist')->with('error', 'Movie not found.');
+    }
+}
 }

@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="mt-3">
                                     <a href="{{ url('/moviedetail/'.$m->movie_id) }}" class="btn btn-warning" style="width: 100%;">Detail</a>
-                                    <a href="" class="btn btn-dark mt-2" style="width: 100%;"><i class="bi bi-plus-lg"></i> Watchlist</a>
+                                    <a href="{{ url('/watchlist/'.$m->movie_id) }}" class="btn btn-dark mt-2" style="width: 100%;"><i class="bi bi-plus-lg"></i> Watchlist</a>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                     @endforeach
                     @if (!$foundMovies) <!-- หากเลือกประเภทหนังแล้วไม่มีข้อมูลในนั้น -->
                     <div class="col-12 mt-4">
-                        <div class="alert alert-dark" role="alert">
+                        <div class="alert alert-dark text-center" role="alert">
                             Not found movies in this type.
                         </div>
                     </div>

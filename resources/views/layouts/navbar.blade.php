@@ -23,10 +23,6 @@
     <div class="navbar z-2">
         <div class="container">
             <a href="/home"><h1>Movies2U</h1></a>
-            <form class="d-flex" role="search">
-                <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
-            </form>
-
                 @guest <!-- ตรวจสอบว่าไม่มีใครล็อกอิน -->
                     <a href="/login" class="btn btn-outline-danger me-2">Login</a>
                     <a href="/register" class="btn btn-danger">Register</a>
@@ -40,8 +36,9 @@
                             <li><a class="dropdown-item" href="/user/profile">Setting</a></li>
                             @if( Auth::user()->roles  == 2)
                             <li><a class="dropdown-item" href="/moviemanagement">Management</a></li>
+                            @else
+                            <li><a class="dropdown-item" href="/MyWatchlist">Watch list</a></li>
                             @endif
-                            <li><a class="dropdown-item" href="">Watch list</a></li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

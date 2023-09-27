@@ -27,6 +27,11 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::middleware(['auth', 'admin:1'])->group(function () {
+        Route::get('/addwatchlist/{movieId}', [MoviesController::class,'addwatchlist']);
+        Route::get('/MyWatchlist', [MoviesController::class,'show_allwatchlist']);
+        Route::get('/watchlist/delete/{id}', [MoviesController::class,'deletewatchlist']);
+    });
     Route::middleware(['auth', 'admin:2'])->group(function () {
         Route::get('/moviemanagement',[MoviesController::class,'manage'])->name('manage');
         Route::get('/moviemanagementEmp',[EmployeeController::class,'ManageEmp'])->name('ManageEmp');
@@ -49,4 +54,5 @@ Route::get('/moviedetail/{movieId}', [MoviesController::class,'showMovieDetails'
 Route::get('/home',[MoviesController::class,'home']);
 Route::get('/type/{Id}', [MoviesController::class,'showList']);
 Route::get('/category', [MoviesController::class,'category']);
+
 

@@ -1,6 +1,6 @@
 @extends('layouts.navbar')
 @section('content')
-    <div class="container">
+  <div class="container">
         <div id="carouselExampleIndicators" class="carousel slide mt-5">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button> <!-- สไลด์ที่ 1 -->
@@ -9,7 +9,6 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button> <!-- สไลด์ที่ 4 -->
             </div>
             <div class="carousel-inner">
-
                 <!-- รูปที่ 1 -->
                 <div class="carousel-item active">
                     <img src="{{ asset('./img/1.png') }}" class="d-block w-100" alt="Avatar">
@@ -55,8 +54,13 @@
                                 <i class="bi bi-star-fill text-warning"><b class="text-black"> {{ $m->movie_score }} </b></i>
                             </h5>
                             <div class="d-flex justify-content-between align-items-center mt-5">
-                                <a href="{{ url('/moviedetail/'.$m->movie_id) }}" class="btn btn-warning" width="250px" height="370px">Detail</a>
-                                <a href="" class="btn btn-dark" width="250px" height="370px"><i class="bi bi-plus-lg"></i> Watchlist</a>
+                                @if( Auth::user()->roles  == 1)
+                                <a href="{{ url('/moviedetail/'.$m->movie_id) }}" class="btn btn-warning" style="width: 48%;">Detail</a>
+                                <a href="/addwatchlist/{{ $m->movie_id}}" class="btn btn-dark" style="width: 48%;"><i class="bi bi-plus-lg"></i> Watchlist</a>
+                                @elseif ( Auth::user()->roles  == 2 )
+                                <a href="/moviemanagement/editForm/{{ $m->movie_id }}" class="btn btn-warning">Edit</a>
+                                <a href="/moviemanagement/delete/{{ $m->movie_id }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this movie?')">Delete</a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -83,8 +87,13 @@
                                 <i class="bi bi-star-fill text-warning"><b class="text-black"> {{ $m->movie_score }} </b></i>
                             </h5>
                             <div class="d-flex justify-content-between align-items-center mt-5">
+                                @if( Auth::user()->roles  == 1)
                                 <a href="{{ url('/moviedetail/'.$m->movie_id) }}" class="btn btn-warning" style="width: 48%;">Detail</a>
-                                <a href="" class="btn btn-dark" style="width: 48%;"><i class="bi bi-plus-lg"></i> Watchlist</a>
+                                <a href="/addwatchlist/{{ $m->movie_id}}" class="btn btn-dark" style="width: 48%;"><i class="bi bi-plus-lg"></i> Watchlist</a>
+                                @elseif ( Auth::user()->roles  == 2 )
+                                <a href="/moviemanagement/editForm/{{ $m->movie_id }}" class="btn btn-warning">Edit</a>
+                                <a href="/moviemanagement/delete/{{ $m->movie_id }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this movie?')">Delete</a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -113,10 +122,10 @@
                             </h5>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <a href="{{ url('/moviedetail/'.$m->movie_id) }}" class="btn btn-warning" style="width: 48%;">Detail</a>
-                                <a href="" class="btn btn-dark" style="width: 48%;"><i class="bi bi-plus-lg"></i> Watchlist</a>
+                                <a href="/addwatchlist/{{ $m->movie_id}}" class="btn btn-dark" style="width: 48%;"><i class="bi bi-plus-lg"></i> Watchlist</a>
                             </div>
                         </div>
-                    </div>dsdfsf
+                    </div>
                 </div>
                 @endif
                 @endforeach
@@ -141,4 +150,7 @@
                 </ul>
                 <p>@ 2023 by Movie2U</p>
             </div>
+
+        </footer>
+    </div>
 @endsection
