@@ -9,6 +9,16 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/moviemanagement">Movies</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/moviemanagementEmp">Employees</a>
+            </li>
+          </ul>
+    </div>
+    <div class="row">
         <header>Movies Management</header>
         <nav class="navbar z-1 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
@@ -75,7 +85,6 @@
             $foundMovies = true;
         @endphp
         @endif
-
         @endforeach
         @if (!$foundMovies)
         <div class="col-12 mt-3">

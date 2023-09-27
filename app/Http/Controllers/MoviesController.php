@@ -124,7 +124,7 @@ class MoviesController extends Controller
             if (file_exists($videoPath)) {
                 unlink($videoPath);
             }
-
+            Movie_detail::where('movie_id', $id)->forcedelete();
             $movie->delete(); // Soft delete
             return redirect('/moviemanagement')->with('success', 'Movie deleted successfully.');
         } else {

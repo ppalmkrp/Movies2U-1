@@ -51,7 +51,7 @@
                     <video id="video-preview" controls style="display: none; max-width: 450px;"></video>
                 </div>
                 <div class="col-7">
-                    <header>Movie Detail</header>
+                    <header>Movie Details</header>
                     <div class="input-group mb-3 mt-3">
                         <span class="input-group-text" id="basic-addon1">MovieID:</span>
                         <input type="text" name="id" placeholder="MXXX (XXX is Numbers)" class="form-control" aria-describedby="basic-addon1" required>
@@ -114,8 +114,8 @@
                         <span class="input-group-text">Movie info:</span>
                         <textarea name="info" class="form-control" aria-label="With textarea"></textarea>
                       </div><br>
-                      
-                      <a href="/moviemanagement/insert"><button type="submit" class="btn btn-success">Import</button></a>
+
+                      <a href="/moviemanagement/insert"><button type="submit" class="btn btn-success">Add</button></a>
                 </div>
             </div>
         </form>
