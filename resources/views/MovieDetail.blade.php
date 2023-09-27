@@ -13,7 +13,7 @@
                 @endforeach
                 -{{ floor($m->movie_time/60) }}h {{ floor($m->movie_time%60) }}m</p>
                 <h5>Movie Score</h5>
-                <h6><i class="bi bi-star-fill star-icon"> </i>{{ $m->movie_score }}/10</h6>
+                <h6><i class="bi bi-star-fill text-warning"> </i>{{ $m->movie_score }}/10</h6>
                 @endforeach
             </div>
             <div class="col-8">

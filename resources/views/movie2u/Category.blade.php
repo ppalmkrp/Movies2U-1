@@ -14,7 +14,7 @@
                 <h2 class="type">All Category</h2>
             </header>
         </div>
-        
+
     </div>
     <div class="row">
         <div class="col-2">
@@ -42,9 +42,13 @@
                                 <i class="bi bi-star-fill text-warning"><b class="text-black"> {{ $m->movie_score }} </b></i>
                             </div>
                             <div class="mt-3">
-                                    <a href="{{ url('/moviedetail/'.$m->movie_id) }}" class="btn btn-warning" style="width: 100%;">Detail</a>
-                                    <a href="/addwatchlist/{{ $m->movie_id}}" class="btn btn-dark mt-2" style="width: 100%;"><i class="bi bi-plus-lg"></i> Watchlist</a>
-                            </div>
+                                @if( Auth::user()->roles  == 1)
+                                <a href="{{ url('/moviedetail/'.$m->movie_id) }}" class="btn btn-warning" style="width: 48%;">Detail</a>
+                                <a href="/addwatchlist/{{ $m->movie_id}}" class="btn btn-dark" style="width: 48%;"><i class="bi bi-plus-lg"></i> Watchlist</a>
+                                @elseif ( Auth::user()->roles  == 2 )
+                                <a href="/moviemanagement/editForm/{{ $m->movie_id }}" class="btn btn-warning">Edit</a>
+                                <a href="/moviemanagement/delete/{{ $m->movie_id }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this movie?')">Delete</a>
+                                @endif                            </div>
                         </div>
                     </div>
                 </div>

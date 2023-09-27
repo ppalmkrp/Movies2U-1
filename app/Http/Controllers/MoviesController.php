@@ -51,7 +51,7 @@ class MoviesController extends Controller
         $type = Movie_type::all();
         $movie = Movie::all();
         $ctr = Critical_rate::all();
-        return view('moviemanagementfilter',compact('movie','mtype','ctr','type'));
+        return view('movie2u.TypeList',compact('movie','mtype','ctr','type'));
     }
 
     public function showMovieDetails($movieId)

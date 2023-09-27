@@ -55,7 +55,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $m->movie_name }}</h5>
                     <p class="card-text">
-                        <i class="bi bi-star-fill star-icon"></i> {{ $m->movie_score }}
+                        <i class="bi bi-star-fill text-warning"> </i> {{ $m->movie_score }}
                     </p>
                     <p>
                         <a href="">{{ $m->movie_year_on_air }}</a> -

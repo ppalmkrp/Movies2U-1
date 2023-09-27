@@ -52,7 +52,7 @@ Route::middleware([
 
 Route::get('/moviedetail/{movieId}', [MoviesController::class,'showMovieDetails']);
 Route::get('/home',[MoviesController::class,'home']);
-Route::get('/type/{Id}', [MoviesController::class,'showList']);
+Route::get('/type/{Id}', [MoviesController::class,'showType']);
 Route::get('/category', [MoviesController::class,'category']);
 
 

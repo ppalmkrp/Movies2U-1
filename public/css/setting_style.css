@@ -1,0 +1,27 @@
+*{ 
+    margin: 0;
+    padding: 0;
+}
+body{ /* กำหนดพื้นหลัง ตัวหนังสือ */
+    background-color: white;
+    color: black;
+}
+h1{ /* กำหนดขนาด ฟอนต์และสีของ element h1*/
+    font-size: 350%;
+    font-family: 'Monoton', cursive;;
+    color: red;
+    font-weight: bold;
+}
+a{
+    color: black;
+    font-weight: bold;
+}
+h1::first-letter{ /* ตัวอักษรตัวแรก */
+    color: white;
+}
+.navbar {
+    z-index: 1;
+    position: sticky;
+    top: 0;
+    background-color: black;
+}

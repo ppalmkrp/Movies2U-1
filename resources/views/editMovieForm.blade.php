@@ -84,7 +84,7 @@
                           </select><br>
                     </div>
                           <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Movie score <i class="bi bi-star-fill star-icon"> </i>:</span>
+                            <span class="input-group-text" id="basic-addon1">Movie score <i class="bi bi-star-fill text-warning"> </i></span>
                             <input type="number" name="score" value="{{ $m->movie_score }}" placeholder="" class="form-control" aria-describedby="basic-addon1" step="0.1" required>
                             <span class="input-group-text" id="basic-addon1">/10</span>
                         </div>
