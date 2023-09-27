@@ -73,8 +73,8 @@ class MoviesController extends Controller
         if ($request->score < 0 || $request->score > 10) {
             return redirect()->back()->with('error', 'Please input score 0-10')->withInput();
         }
-        if($request->type == "" || $request->rate == ""){
-            return redirect()->back()->with('error', 'Please input type or rate.')->withInput();
+        if($request->type == "" || $request->rate == "" || $request->time <= 0){
+            return redirect()->back()->with('error', 'Add failed')->withInput();
         }
         if ($request->hasFile('img')) {
             $imgFile = $request->file('img');
