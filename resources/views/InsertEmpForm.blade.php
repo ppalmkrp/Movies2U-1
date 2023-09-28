@@ -24,9 +24,9 @@
                     <div class="row mt-2">
                     @foreach ($movie as $m)
             <div class="col-3">
-                <div class="card h-100 mt-3" style="width: 18 rem;">
+                <div class="card mt-4" style="width: auto">
                     <a href="/moviedetail/{{ $m->movie_id }}">
-                        <img src="{{ asset('Materials/Movies/' . $m->movie_id . '.png') }}" class="card-img-top" alt="Movie poster" width="250px" height="370px"/>
+                        <img class="card-img-top" src="{{ asset('Materials/Movies/' . $m->movie_id . '.png') }}" alt="Movie poster" width="300px" height="450px"/>
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">{{ $m->movie_name }}</h5>

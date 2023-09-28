@@ -125,15 +125,14 @@ class EmployeeController extends Controller
     }
 
     public function deleteEmployee($emp_id) {
-        // ค้นหาพนักงานที่ต้องการลบ
+
         $employee = Employee::where('emp_id', $emp_id)->first();
         $delEmp = Employee::where('emp_id', $emp_id);
 
         if ($employee) {
-            // ลบข้อมูล Movie_detail ที่เกี่ยวข้องกับพนักงาน
             Movie_detail::where('emp_id', $emp_id)->forcedelete();
 
-            // ลบพนักงาน
+            
             $delEmp->delete();
             return redirect('/moviemanagementEmp')->with('success', 'ลบพนักงานเรียบร้อยแล้ว');
         } else {

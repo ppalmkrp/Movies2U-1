@@ -53,6 +53,13 @@ class MoviesController extends Controller
         $ctr = Critical_rate::all();
         return view('movie2u.TypeList',compact('movie','mtype','ctr','type'));
     }
+    public function showTypefilter($Id){
+        $mtype = Movie_type::where('type_id',$Id)->get();
+        $type = Movie_type::all();
+        $movie = Movie::all();
+        $ctr = Critical_rate::all();
+        return view('moviemanagementfilter',compact('movie','mtype','ctr','type'));
+    }
 
     public function showMovieDetails($movieId)
     {
@@ -127,6 +134,7 @@ class MoviesController extends Controller
                 unlink($videoPath);
             }
             Movie_detail::where('movie_id', $id)->forcedelete();
+            watchlist::where('movie_id', $id)->forcedelete();
             $movie->delete(); // Soft delete
             return redirect('/moviemanagement')->with('success', 'Movie deleted successfully.');
         } else {

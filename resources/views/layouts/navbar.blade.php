@@ -24,18 +24,20 @@
         <div class="container">
             <a href="/home"><h1>Movies2U</h1></a>
                 @guest <!-- ตรวจสอบว่าไม่มีใครล็อกอิน -->
+                <div class="btn-group">
                     <a href="/login" class="btn btn-outline-danger me-2">Login</a>
                     <a href="/register" class="btn btn-danger">Register</a>
+                </div>
                 @else <!-- ถ้ามีใครล็อกอินแล้ว -->
                     <div class="btn-group">
                         <button type="button" class="btn btn-outline-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle" style="font-size: 1.2rem;"> </i>@if( Auth::user()->roles == '2')Admin @else User
-                           @endif:{{ Auth::user()->name }}<span class="visually-hidden">Toggle Dropdown</span>
+                            <i class="bi bi-person-circle" style="font-size: 1.2rem;"> </i>{{ Auth::user()->name }}<span class="visually-hidden">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/user/profile">Setting</a></li>
                             @if( Auth::user()->roles  == 2)
                             <li><a class="dropdown-item" href="/moviemanagement">Management</a></li>
+                            <li><a class="dropdown-item" href="/addUserForm">Add user</a></li>
                             @else
                             <li><a class="dropdown-item" href="/MyWatchlist">Watch list</a></li>
                             @endif
@@ -56,6 +58,21 @@
     </div>
     <div class="container mt-3">
         @yield('content')
+        <hr class="mt-5">
+    </div>
+    <div class="container-fluid mt-3">
+        <footer>
+            <div class="footer_social">
+                <ul>
+                    <li class="icon"><a href=""><i class="bi bi-facebook text-primary" style="font-size: 1.5rem;"></i></a></li>
+                    <li class="icon"><a href=""><i class="bi bi-twitter text-primary" style="font-size: 1.5rem;"></i></a></li>
+                    <li class="icon"><a href=""><i class="bi bi-instagram text-danger" style="font-size: 1.5rem;"></i></a></li>
+                    <li class="icon"><a href=""><i class="bi bi-github" style="font-size: 1.5rem;"></i></a></li>
+                </ul>
+                <p>@ 2023 by Movie2U</p>
+            </div>
+
+        </footer>
     </div>
 </body>
 </html>

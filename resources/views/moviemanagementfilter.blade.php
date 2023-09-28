@@ -56,9 +56,9 @@
         @foreach ($movie as $m)
         @if ($m->movie_type_id == $mt->type_id)
         <div class="col-3">
-            <div class="card h-100 mt-3" style="width: 18 rem;">
+            <div class="card mt-4" style="width: auto">
                 <a href="/moviedetail/{{ $m->movie_id }}">
-                    <img src="{{ asset('Materials/Movies/' . $m->movie_id . '.png') }}" class="card-img-top" alt="Movie poster" width="250px" height="370px"/>
+                    <img class="card-img-top" src="{{ asset('Materials/Movies/' . $m->movie_id . '.png') }}" alt="Movie poster" width="300px" height="450px"/>
                 </a>
                 <div class="card-body">
                     <h5 class="card-title">{{ $m->movie_name }}</h5>
@@ -76,8 +76,8 @@
                     </p>
                 </div>
                 <div class="card-body">
-                    <a href="/moviemanagement/editForm/{{ $m->movie_id }}" class="btn btn-warning">Edit</a>
-                    <a href="/moviemanagement/delete/{{ $m->movie_id }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this movie?')">Delete</a>
+                    <a href="/moviemanagement/editForm/{{ $m->movie_id }}" class="btn btn-warning" style="width: 48%;">Edit</a>
+                    <a href="/moviemanagement/delete/{{ $m->movie_id }}" class="btn btn-danger" style="width: 48%;" onclick="return confirm('Are you sure you want to delete this movie?')">Delete</a>
                 </div>
             </div>
         </div>

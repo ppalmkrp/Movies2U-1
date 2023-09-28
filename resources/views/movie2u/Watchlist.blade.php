@@ -11,7 +11,7 @@
                         <div class="button-overlay">
                             @if ( Auth::user()->roles == 1)
                             <a href="/moviedetail/{{ $miw->movie_id }}" class="btn detail-btn-primary mt-1" color="black">Details</a>
-                            <a href="/watchlist/delete/{{ $miw->movie_id }}" class="btn delete-btn-primary mt-1" onclick="return confirm('Are you sure you want to delete this movie?')">Delete</a>
+                            <a href="/watchlist/delete/{{ $miw->movie_id }}" class="btn delete-btn-primary mt-1" onclick="return confirm('Are you sure you want to delete this movie?')">Remove</a>
 
                             @endif
                         </div>

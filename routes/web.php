@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\AddUserController;
 use App\Http\Controllers\EmployeeController;
+use App\Models\Critical_rate;
+use App\Models\Employee;
+use App\Models\Movie;
+use App\Models\Movie_type;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MoviesController;
 
@@ -16,7 +21,13 @@ use App\Http\Controllers\MoviesController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $action = Movie_type::where('type_id',"MT01")->get();
+    $comedy = Movie_type::where('type_id',"MT03")->get();
+    $movie = Movie::all();
+    $emp = Employee::all();
+    $mtype = Movie_type::all();
+    $ctr = Critical_rate::all();
+    return view('welcome',compact('movie','mtype','emp','mtype','ctr','action','comedy'));
 });
 
 Route::middleware([
@@ -25,17 +36,26 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    $action = Movie_type::where('type_id',"MT01")->get();
+    $comedy = Movie_type::where('type_id',"MT03")->get();
+    $movie = Movie::all();
+    $emp = Employee::all();
+    $mtype = Movie_type::all();
+    $ctr = Critical_rate::all();
+    return view('welcome',compact('movie','mtype','emp','mtype','ctr','action','comedy'));
+})->name('welcome');
     Route::middleware(['auth', 'admin:1'])->group(function () {
         Route::get('/addwatchlist/{movieId}', [MoviesController::class,'addwatchlist']);
         Route::get('/MyWatchlist', [MoviesController::class,'show_allwatchlist']);
         Route::get('/watchlist/delete/{id}', [MoviesController::class,'deletewatchlist']);
     });
     Route::middleware(['auth', 'admin:2'])->group(function () {
+        Route::get('/addUserForm',[AddUserController::class,'adduserform'])->name('adduserform');
+        Route::post('/addUserForm/addUser',[AddUserController::class,'AddUser'])->name('AddUser');
+        Route::get('/addUserForm/deleteUser/{id}',[AddUserController::class,'DelUser'])->name('DelUser');
         Route::get('/moviemanagement',[MoviesController::class,'manage'])->name('manage');
         Route::get('/moviemanagementEmp',[EmployeeController::class,'ManageEmp'])->name('ManageEmp');
-        Route::get('/moviemanagement/type/{Id}', [MoviesController::class,'showType'])->name('showType');
+        Route::get('/moviemanagement/type/{Id}', [MoviesController::class,'showTypefilter'])->name('showType');
         Route::get('/moviemanagementEmp/movie/{Id}', [EmployeeController::class,'filterEmp'])->name('filterEmp');
         Route::get('/moviemanagement/forminsertmovie',[MoviesController::class,'movieform'])->name('movieform');
         Route::get('/moviemanagementEmp/forminsertEmp',[EmployeeController::class,'InsertEmpForm'])->name('InsertEmpForm');

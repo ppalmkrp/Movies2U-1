@@ -47,13 +47,19 @@
                                     <i class="bi bi-star-fill text-warning"><b class="text-black"> {{ $m->movie_score }} </b></i>
                                 </div>
                                 <div class="mt-3">
+                                    @guest
+                                    <a href="/moviedetail/{{ $m->movie_id }}" class="btn btn-warning" style="width: 48%;">Detail</a>
+                                    <a href="/addwatchlist/{{ $m->movie_id}}" class="btn btn-dark" style="width: 48%;"><i class="bi bi-plus-lg"></i> Watchlist</a>
+                                    @else
                                     @if( Auth::user()->roles  == 1)
                                     <a href="/moviedetail/{{ $m->movie_id }}" class="btn btn-warning" style="width: 48%;">Detail</a>
                                     <a href="/addwatchlist/{{ $m->movie_id}}" class="btn btn-dark" style="width: 48%;"><i class="bi bi-plus-lg"></i> Watchlist</a>
                                     @elseif ( Auth::user()->roles  == 2 )
-                                    <a href="/moviemanagement/editForm/{{ $m->movie_id }}" class="btn btn-warning">Edit</a>
-                                    <a href="/moviemanagement/delete/{{ $m->movie_id }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this movie?')">Delete</a>
-                                    @endif                                </div>
+                                    <a href="/moviemanagement/editForm/{{ $m->movie_id }}" class="btn btn-warning" style="width: 48%;">Edit</a>
+                                    <a href="/moviemanagement/delete/{{ $m->movie_id }}" class="btn btn-danger" style="width: 48%;" onclick="return confirm('Are you sure you want to delete this movie?')">Delete</a>
+                                    @endif
+                                    @endguest
+                                </div>
                             </div>
                         </div>
                     </div>
