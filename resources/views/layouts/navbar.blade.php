@@ -42,18 +42,16 @@
                             <li><a class="dropdown-item" href="/MyWatchlist">Watch list</a></li>
                             @endif
                             <li>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                    Log out
-                                </a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a class="dropdown-item" href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                        Logout
+                                    </a>
+                                </form>
                             </li>
                         </ul>
                     </div>
                 @endguest
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
         </div>
     </div>
     <div class="container mt-3">
@@ -71,7 +69,6 @@
                 </ul>
                 <p>@ 2023 by Movie2U</p>
             </div>
-
         </footer>
     </div>
 </body>

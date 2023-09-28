@@ -42,7 +42,6 @@
             <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th scope="col">id</th>
                     <th scope="col">name</th>
                     <th scope="col">email</th>
                     <th scope="col">role</th>
@@ -51,7 +50,6 @@
                 <tbody>
                     @foreach ($users as $u)
                     <tr>
-                        <th scope="row">{{ $u->id }}</th>
                         <td>{{ $u->name }}</td>
                         <td>{{ $u->email }}</td>
                         <td>@if($u->roles == 1)

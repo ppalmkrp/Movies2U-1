@@ -6,7 +6,7 @@
             @foreach ($moviesInWatchlist as $miw)
                 <div class="col-xl-2 col-md-4 mb-4">
                     <div class="movie-poster">
-                        <a></a><img src="{{ asset('Materials/Movies/' . $miw->movie_id . '.png') }}" class="card-img-top">
+                        <a></a><img src="{{ asset('Materials/Movies/' . $miw->movie_id . '.png') }}" class="card-img-top" >
                         </a>
                         <div class="button-overlay">
                             @if ( Auth::user()->roles == 1)
