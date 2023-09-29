@@ -21,5 +21,8 @@ class Movie extends Model
     function Movie_details(){
         return $this->belongsToMany(Movie_detail::class);
         }
+    function review(){
+        return $this->belongsToMany(review::class);
+        }
 
 }

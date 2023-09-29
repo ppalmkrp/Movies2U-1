@@ -43,7 +43,10 @@ Route::middleware([
     $mtype = Movie_type::all();
     $ctr = Critical_rate::all();
     return view('welcome',compact('movie','mtype','emp','mtype','ctr','action','comedy'));
+
 })->name('welcome');
+    Route::post('/review',[MoviesController::class,'Addreview'])->name('Addreview');
+    Route::get('/delcomment/{Id}',[MoviesController::class,'Delcomment'])->name('Delcomment');
     Route::middleware(['auth', 'admin:1'])->group(function () {
         Route::get('/addwatchlist/{movieId}', [MoviesController::class,'addwatchlist']);
         Route::get('/MyWatchlist', [MoviesController::class,'show_allwatchlist']);

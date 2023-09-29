@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Employee_type;
 use App\Models\EmployeeType;
+use App\Models\review;
 use App\Models\watchlist;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use App\Models\Movie;
 use App\Models\Movie_type;
 use App\Models\Critical_rate;
 use App\Models\Movie_detail;
+use App\Models\User;
 
 class MoviesController extends Controller
 {
@@ -67,12 +69,14 @@ class MoviesController extends Controller
         if (!$movie) {
             return abort(404);
         }
+        $reviews = review::where('movie_id',$movieId)->get();
+        $user = User::all();
         $detail = Movie_detail::all();
         $emp = Employee::all();
         $empt = Employee_type::all();
         $mtype = Movie_type::all();
         $ctr = Critical_rate::all();
-        return view('MovieDetail', compact('movie', 'emp', 'mtype', 'ctr','empt','detail'));
+        return view('MovieDetail', compact('movie', 'emp', 'mtype', 'ctr','empt','detail','reviews','user'));
     }
 
     public function insertMovie(Request $request){
@@ -135,6 +139,7 @@ class MoviesController extends Controller
             }
             Movie_detail::where('movie_id', $id)->forcedelete();
             watchlist::where('movie_id', $id)->forcedelete();
+            review::where('movie_id', $id)->forcedelete();
             $movie->delete(); // Soft delete
             return redirect('/moviemanagement')->with('success', 'Movie deleted successfully.');
         } else {
@@ -265,4 +270,22 @@ public function deletewatchlist($id) {
         return redirect('/MyWatchlist')->with('error', 'Movie not found.');
     }
 }
+
+        public function Addreview(Request $request){
+            $user = Auth::user();
+            $add_review = new review;
+
+            $add_review->user_id = $user->id;
+            $add_review->movie_id = $request->movie;
+            $add_review->review_info = $request->comment;
+
+            $add_review->save();
+            return redirect()->back();
+    }
+
+    public function Delcomment($Id){
+        $delcomment = review::where('id',$Id)->first();
+        $delcomment->forcedelete();
+        return redirect()->back();
+    }
 }

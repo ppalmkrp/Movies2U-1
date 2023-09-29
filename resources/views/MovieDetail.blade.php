@@ -84,6 +84,86 @@
                      @endforeach
                      @endforeach
                 </p>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-8">
+                <h5>Review</h5>
+                @guest
+                <form method="post" action="/review" enctype="multipart/form-data">
+                    @csrf
+                    <div class="input-group mb-3 mt-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Movie:</span>
+                            <input name="movie" value="{{ $m->movie_id }}" class="form-control" aria-describedby="basic-addon1" readonly disabled>
+                          </div>
+                        <div class="input-group">
+                            <span class="input-group-text">Review:</span>
+                            <textarea name="comment" class="form-control" placeholder="comment!" aria-label="With textarea" required disabled></textarea>
+                        </div>
+                        <div class="input-group mt-3">
+                            <input class="btn-outline-light" type="submit" value="review">
+                        </div>
+                    </div>
+                </form>
+                @else
+                <form method="post" action="/review" enctype="multipart/form-data">
+                    @csrf
+                    <div class="input-group mb-3 mt-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Movie:</span>
+                            <input name="movie" value="{{ $m->movie_id }}" type="text" class="form-control hide" placeholder="{{ $m->movie_name }}" aria-label="Username" aria-describedby="basic-addon1" readonly>
+                          </div>
+                        <div class="input-group">
+                            <span class="input-group-text">{{ Auth::user()->name }}:</span>
+                            <textarea name="comment" class="form-control" placeholder="comment!" aria-label="With textarea" required></textarea>
+                        </div>
+                        <div class="input-group mt-3">
+                            <input class="btn-outline-light" type="submit" value="review">
+                        </div>
+                    </div>
+                </form>
+                @endguest
+                <hr class="mt-5">
+                <h5>User review!</h5>
+                @foreach ($reviews as $rv)
+                @foreach ($user as $u)
+                @guest
+                    @if($rv->user_id == $u->id && $rv->movie_id == $m->movie_id)
+                    <div class="card mt-3">
+                        <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>{{ $rv->review_info }}</p>
+                            <footer class="blockquote-footer">{{ $u->name }}</cite></footer>
+                        </blockquote>
+                        </div>
+                    </div>
+                    @endif
+                @else
+                    @if($rv->user_id == $u->id && $rv->movie_id == $m->movie_id && Auth::user()->roles == 1)
+                    <div class="card mt-3">
+                        <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>{{ $rv->review_info }}</p>
+                            <footer class="blockquote-footer">{{ $u->name }}     <cite>@if(Auth::user()->id == $rv->user_id)
+                                <a href="/delcomment/{{ $rv->id }}"><button type="button" class="btn btn-outline-danger">Delete</button></a></cite>
+                            @endif </footer>
+                        </blockquote>
+                        </div>
+                    </div>
+                    @elseif(Auth::user()->roles == 2 && $rv->user_id == $u->id && $rv->movie_id == $m->movie_id)
+                    <div class="card mt-3">
+                        <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>{{ $rv->review_info }}</p>
+                            <footer class="blockquote-footer">{{ $u->name }}     <cite><a href="/delcomment/{{ $rv->id }}"><button type="button" class="btn btn-outline-danger">Delete</button></a></cite></footer>
+                        </blockquote>
+                        </div>
+                    </div>
+                    @endif
+                @endguest
+                @endforeach
+                @endforeach
                 @endforeach
             </div>
         </div>
