@@ -132,7 +132,7 @@ class EmployeeController extends Controller
         if ($employee) {
             Movie_detail::where('emp_id', $emp_id)->forcedelete();
 
-            
+
             $delEmp->delete();
             return redirect('/moviemanagementEmp')->with('success', 'ลบพนักงานเรียบร้อยแล้ว');
         } else {
