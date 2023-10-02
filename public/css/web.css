@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@600&display=swap');
 *{
     margin: 0;
     padding: 0;
+    font-family: 'Prompt', sans-serif;
 }
 body{ /* กำหนดพื้นหลัง ตัวหนังสือ */
     background-color: white;
@@ -155,3 +157,76 @@ header {
     font-size: 2.5em;
     font-weight: bolder;
   }
+  .logo{
+    width: 150px;
+  }
+  .logo:hover{
+    transform: scale(1.18);
+    transition: 0.3s;
+  }
+  .carousel-item img {
+    width: 100%; /* กำหนดความกว้างของรูปภาพใน Carousel */
+    height: 500px; /* กำหนดความสูงของ Carousel */
+}
+.detail-btn-primary {
+    color: black;
+    background-color: white;
+}
+
+.delete-btn-primary{
+    color: white;
+    background-color: black;
+}
+
+.movie-poster{
+    position: relative;
+    width: 200px; /* ปรับขนาดตามที่คุณต้องการ */
+    height: 300px;
+  }
+.card-img-top{
+    position: relative;
+    width: 200px; /* ปรับขนาดตามที่คุณต้องการ */
+    height: 300px;
+    border-radius: 10px;
+}
+.card-img{
+    width: 300px;
+    height: 400px;
+}
+.card-img-category{
+    width: 245px;
+    height: 350px;
+    border-radius: 5px;
+}
+.card-img-type{
+    width: 245px;
+    height: 350px;
+    border-radius: 5px;
+}
+.button-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Background color with transparency */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth transition effect */
+    border-radius: 10px;
+}
+.button-overlay a {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Smooth button hover effect */
+}
+.button-overlay:hover {
+    opacity: 1; /* Show the button on hover */
+    gap: 2px;
+}
+.button-overlay a:hover {
+    background-color: red; /* Change button color on hover */
+}

@@ -22,7 +22,7 @@
 <body>
     <div class="navbar z-2">
         <div class="container">
-            <a href="/home"><h1>Movies2U</h1></a>
+            <a href="/home"><img class="logo" src="{{ asset('./img/logo_V.3.png') }}" alt="logo"></a>
                 @guest <!-- ตรวจสอบว่าไม่มีใครล็อกอิน -->
                 <div class="btn-group">
                     <a href="/login" class="btn btn-outline-danger me-2">Login</a>
@@ -35,6 +35,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/user/profile">Setting</a></li>
+                            <li><a class="dropdown-item" href="/category">Category</a></li>
                             @if( Auth::user()->roles  == 2)
                             <li><a class="dropdown-item" href="/moviemanagement">Management</a></li>
                             <li><a class="dropdown-item" href="/addUserForm">Add user</a></li>

@@ -14,13 +14,12 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
 
         <!-- Styles -->
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
-        <x-banner />
 
         <div class="min-h-screen bg-gray-100">
             <!-- Page Heading -->
@@ -44,7 +43,7 @@
                     @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                         @livewire('profile.update-profile-information-form')
 
-                        <x-section-border />
+                        
                     @endif
 
                     @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
@@ -52,7 +51,7 @@
                             @livewire('profile.update-password-form')
                         </div>
 
-                        <x-section-border />
+                        
                     @endif
 
                     @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
@@ -60,7 +59,7 @@
                             @livewire('profile.two-factor-authentication-form')
                         </div>
 
-                        <x-section-border />
+                        
                     @endif
 
                     <div class="mt-10 sm:mt-0">
@@ -68,7 +67,7 @@
                     </div>
 
                     @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
-                        <x-section-border />
+                        
 
                         <div class="mt-10 sm:mt-0">
                             @livewire('profile.delete-user-form')

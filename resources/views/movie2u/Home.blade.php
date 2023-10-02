@@ -46,7 +46,7 @@
                 <div class="col-3">
                     <div class="card mt-5" style="width: auto">
                         <a href="/moviedetail/{{ $m->movie_id }}">
-                            <img class="card-img-top" src="{{ asset('Materials/Movies/' . $m->movie_id . '.png') }}" alt="Movie poster" width="300px" height="450px"/>
+                            <img class="card-img" src="{{ asset('Materials/Movies/' . $m->movie_id . '.png') }}" alt="Movie poster" width="300px" height="450px"/>
                         </a>
                         <div class="card-body">
                             <h5 class="card-title  d-flex justify-content-between align-items-center">
@@ -94,7 +94,7 @@
                             <div class="col-3">
                                 <div class="card mt-4" style="width: auto">
                                     <a href="/moviedetail/{{ $m->movie_id }}">
-                                        <img class="card-img-top" src="{{ asset('Materials/Movies/' . $m->movie_id . '.png') }}" alt="Movie poster" width="300px" height="450px"/>
+                                        <img class="card-img" src="{{ asset('Materials/Movies/' . $m->movie_id . '.png') }}" alt="Movie poster" width="300px" height="450px"/>
                                     </a>
                                     <div class="card-body">
                                         <h5 class="card-title  d-flex justify-content-between align-items-center">
@@ -138,7 +138,7 @@
                 <div class="col-3">
                     <div class="card mt-4" style="width: auto">
                         <a href="/moviedetail/{{ $m->movie_id }}">
-                            <img class="card-img-top" src="{{ asset('Materials/Movies/' . $m->movie_id . '.png') }}" alt="Movie poster" width="300px" height="450px"/>
+                            <img class="card-img" src="{{ asset('Materials/Movies/' . $m->movie_id . '.png') }}" alt="Movie poster" width="300px" height="450px"/>
                         </a>
                         <div class="card-body">
                             <h5 class="card-title  d-flex justify-content-between align-items-center">
@@ -172,7 +172,7 @@
                 <div class="col-3">
                     <div class="card mt-4" style="width: auto">
                         <a href="/moviedetail/{{ $m->movie_id }}">
-                            <img class="card-img-top" src="{{ asset('Materials/Movies/' . $m->movie_id . '.png') }}" alt="Movie poster" width="300px" height="450px"/>
+                            <img class="card-img" src="{{ asset('Materials/Movies/' . $m->movie_id . '.png') }}" alt="Movie poster" width="300px" height="450px"/>
                         </a>
                         <div class="card-body">
                             <h5 class="card-title  d-flex justify-content-between align-items-center">
@@ -212,4 +212,5 @@
 
         </footer>
     </div> --}}
+
 @endsection
