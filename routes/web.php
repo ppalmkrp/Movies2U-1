@@ -51,6 +51,11 @@ Route::middleware([
         Route::get('/addwatchlist/{movieId}', [MoviesController::class,'addwatchlist']);
         Route::get('/MyWatchlist', [MoviesController::class,'show_allwatchlist']);
         Route::get('/watchlist/delete/{id}', [MoviesController::class,'deletewatchlist']);
+        Route::get('/favpage', [MoviesController::class, 'Favpage'])->name('favorite');
+        Route::get('/addfav/{movieId}', [MoviesController::class, 'AddFav'])->name('addFav');
+        Route::get('/delfav/{movieId}', [MoviesController::class, 'delFav'])->name('delFav');
+        Route::get('/favpage', [MoviesController::class, 'like'])->name('likes');
+
     });
     Route::middleware(['auth', 'admin:2'])->group(function () {
         Route::get('/addUserForm',[AddUserController::class,'adduserform'])->name('adduserform');
@@ -77,5 +82,4 @@ Route::get('/moviedetail/{movieId}', [MoviesController::class,'showMovieDetails'
 Route::get('/home',[MoviesController::class,'home']);
 Route::get('/type/{Id}', [MoviesController::class,'showType']);
 Route::get('/category', [MoviesController::class,'category']);
-
 

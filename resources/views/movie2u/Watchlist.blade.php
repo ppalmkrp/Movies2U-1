@@ -6,13 +6,15 @@
             @foreach ($moviesInWatchlist as $miw)
                 <div class="col-xl-2 col-md-4 mb-4">
                     <div class="movie-poster">
-                        <a></a><img src="{{ asset('Materials/Movies/' . $miw->movie_id . '.png') }}" class="card-img-top" >
+                        <a></a><img src="{{ asset('Materials/Movies/' . $miw->movie_id . '.png') }}" class="card-img-top">
+                        <a href="/addfav/{{ $miw->movie_id }}" class="btn btn-link"><i class="bi bi-heart text-danger"></i>
                         </a>
                         <div class="button-overlay">
-                            @if ( Auth::user()->roles == 1)
-                            <a href="/moviedetail/{{ $miw->movie_id }}" class="btn detail-btn-primary mt-1" color="black">Details</a>
-                            <a href="/watchlist/delete/{{ $miw->movie_id }}" class="btn delete-btn-primary mt-1" onclick="return confirm('Are you sure you want to delete this movie?')">Remove</a>
-
+                            @if (Auth::user()->roles == 1)
+                                <a href="/moviedetail/{{ $miw->movie_id }}" class="btn detail-btn-primary mt-1"
+                                    color="black">Details</a>
+                                <a href="/watchlist/delete/{{ $miw->movie_id }}" class="btn delete-btn-primary mt-1"
+                                    onclick="return confirm('Are you sure you want to delete this movie?')">Remove</a>
                             @endif
                         </div>
                     </div>
